@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import Job from "../Job/Job";
 
 const FeaturedJobs = () => {
+  const [jobs, setJobs] = useState([]);
 
-    const [jobs, setJobs] = useState([]);
+  const [dataLength, setDataLength] = useState(4);
 
-    useEffect(() => {
-        fetch('jobs.json')
-        .then(res => res.json())
-        .then(data => setJobs(data))
-    }, [])
-
+  useEffect(() => {
+    fetch("jobs.json")
+      .then((res) => res.json())
+      .then((data) => setJobs(data));
+  }, []);
 
   return (
     <div className="my-20">
@@ -23,12 +23,21 @@ const FeaturedJobs = () => {
           </p>
         </div>
       </div>
-      <div>
-        {
-            jobs.map(job => <Job key={job.id} job={job}></Job>)
-        }
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mx-4 lg:mx-32 my-10">
+        {jobs.slice(0, dataLength).map((job) => (
+          <Job key={job.id} job={job}></Job>
+        ))}
       </div>
-      <div></div>
+      <div className="flex justify-center">
+        <div className={dataLength === jobs.length && "hidden"}>
+          <button
+            onClick={() => setDataLength(jobs.length)}
+            className="btn bg-gradient-to-r from-cyan-500 to-blue-500"
+          >
+            See More
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -56,7 +56,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn bg-gradient-to-r from-cyan-500 to-blue-500">Start Applying</a>
+          <a className="btn bg-gradient-to-r from-cyan-500 to-blue-500 text-white">Start Applying</a>
         </div>
       </div>
     </div>
